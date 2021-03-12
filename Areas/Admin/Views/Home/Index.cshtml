@@ -1,0 +1,44 @@
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole> 
+@{
+    ViewData["Title"] = "Administrator";
+}
+
+<div class="container">
+    <br />
+
+    <div class="row">
+        @if (ViewBag.IsSuccess == true)
+        {
+        <div class="alert alert-success offset-3" role="alert">
+            Password has been updated successfully
+        </div>
+        }
+    </div><hr />
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-center">List of Role</h2>
+        </div>
+        <div class="col-6">
+            <a asp-action="AddRole" asp-controller="Role" class="col-3 offset-3 btn btn-info">Create</a>
+        </div>
+        <br />
+        <table class="table table-strped table-bordered">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in Model)
+                {
+                    <tr>
+                        <td>@role.Id</td>
+                        <td>@role.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,60 @@
+@model IEnumerable<UserInRoleModel>
+
+@{
+    ViewData["Title"] = "Users - Admin";
+}
+
+<div class="container">
+    <br />
+
+    <div class="row">
+        @* @if (ViewBag.IsSuccess = true)
+        {
+        <div class="alert alert-success offset-3" role="alert">
+            @ViewBag.IsSuccess
+        </div>
+        } *@
+    </div><hr />
+
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-center">Users (@Model.Count())</h2>
+        </div>
+        <div class="col-6">
+            <a asp-action="" asp-controller="Role" class="col-4 offset-3 btn btn-info">Create New User</a>
+        </div>
+        <br />
+        <table class="table table-strped table-bordered">
+            <thead>
+                <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Email</td>
+                    <td>Role</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var role in Model)
+                {
+                    <tr>
+                        <td>@role.FirstName</td>
+                        <td>@role.LastName</td>
+                        <td>@role.Email</td>
+                        <td>@role.UserRole</td>
+                        <td>
+                            <form method="post" asp-action="DeleteUser" asp-controller="Role" asp-route-id="@role.Id">
+                                <a asp-action="UpdateUserData" asp-route-id="@role.Id" asp-controller="Role" class="btn btn-primary btn-sm text-white" style="cursor: pointer">
+                                    Update
+                                </a>
+                                <button type="submit" class="btn btn-danger btn-sm text-white" style="cursor: pointer">
+                                    Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
