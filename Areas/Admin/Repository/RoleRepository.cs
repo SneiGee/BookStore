@@ -73,6 +73,7 @@ namespace BookStore.Areas.Admin.Repository
 
         public async Task<IdentityResult> EditUserAsync(EditUserModel editUserModel)
         {
+            // Implement the update user
             var user = await _userManager.FindByIdAsync(editUserModel.Id);
             if (user != null)
             {
@@ -89,6 +90,7 @@ namespace BookStore.Areas.Admin.Repository
 
         public async Task<IdentityResult> DeleteUserAsync(string id)
         {
+            // implement Delete user
             var user = await _userManager.FindByIdAsync(id);
             return await _userManager.DeleteAsync(user);
         }

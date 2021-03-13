@@ -35,6 +35,7 @@ namespace BookStore.Areas.Admin.Controllers
         [Route("add-role")]
         public IActionResult AddRole()
         {
+            // Add role 
             return View();
         }
 
@@ -64,6 +65,7 @@ namespace BookStore.Areas.Admin.Controllers
         [HttpGet("users/update-user")]
         public async Task<IActionResult> UpdateUserData(string id)
         {
+            // retrieve user data
             var user = await _roleRepository.GetUserById(id);
             if (user == null)
             {
@@ -89,6 +91,7 @@ namespace BookStore.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> UpdateUserData(EditUserModel editUserModel)
         {
+            // update user data
             if (ModelState.IsValid)
             {
                 var result = await _roleRepository.EditUserAsync(editUserModel);
@@ -110,6 +113,7 @@ namespace BookStore.Areas.Admin.Controllers
         [HttpGet("users/update-user/manage-user")]
         public async Task<IActionResult> ManageUserRole(string userId)
         {
+            // retrieve all roles and user role
             ViewBag.userId = userId;
 
             var user = await _roleRepository.GetUserById(userId);
@@ -147,6 +151,7 @@ namespace BookStore.Areas.Admin.Controllers
         [HttpPost("users/update-user/manage-user")]
         public async Task<IActionResult> ManageUserRole(List<ManageUserRoleModel> model, string userId)
         {
+            // update and remove role from user
             var user = await _roleRepository.GetUserById(userId);
             if (user == null)
             {
